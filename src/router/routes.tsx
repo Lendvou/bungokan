@@ -1,12 +1,13 @@
 import { RouteObject } from "react-router-dom";
-import { GrammarPage } from "../pages/GrammarPage";
+import { RouteNames } from "./constants";
+import { NavigationLayout } from "../layouts/NavigationLayout";
+import { GrammarPage } from "../pages/Grammar";
 import { MainPage } from "../pages/Main";
 import { NotFound } from "../pages/NotFound";
-import { NavigationLayout } from "./layouts/NavigationLayout";
-import { RouteNames } from "./types";
-import { VocabPage } from "../pages/VocabPage";
-import { KanjiPage } from "../pages/KanjiPage";
-import { SettingsPage } from "../pages/SettingsPage";
+import { VocabPage } from "../pages/Vocab";
+import { KanjiPage } from "../pages/Kanji";
+import { SettingsPage } from "../pages/Settings";
+import { GrammarLessonPage } from "../pages/GrammarLesson";
 
 export const routes: RouteObject[] = [
     {
@@ -22,6 +23,14 @@ export const routes: RouteObject[] = [
         element: (
             <NavigationLayout>
                 <GrammarPage />
+            </NavigationLayout>
+        ),
+    },
+    {
+        path: RouteNames.GRAMMAR_LESSON,
+        element: (
+            <NavigationLayout>
+                <GrammarLessonPage />
             </NavigationLayout>
         ),
     },

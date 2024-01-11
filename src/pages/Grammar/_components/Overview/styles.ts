@@ -7,7 +7,7 @@ export const useGrammarOverviewStyles = createUseStyles({
     header: {
         position: "sticky",
         top: 0,
-        backgroundColor: "#303030",
+        backgroundColor: "#292929",
         zIndex: 2,
         paddingTop: 18,
         paddingBottom: 18,

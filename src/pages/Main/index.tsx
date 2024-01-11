@@ -1,16 +1,11 @@
 import { useMainPageStyles } from "./styles";
+import { Card } from "../../components/Card/index";
 
 export const MainPage = () => {
     const styles = useMainPageStyles();
     return (
         <div className={styles.container}>
-            Overall progress
-            <br />
-            Grammar progress
-            <br />
-            Vocab progress
-            <br />
-            Kanji progress
+            <Card>sdfasdf</Card>
         </div>
     );
 };

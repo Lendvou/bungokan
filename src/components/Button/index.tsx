@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useButtonStyles } from "./styles";
+import { Ripples } from "../Ripples";
 
 interface IButtonProps
     extends React.DetailedHTMLProps<
@@ -22,12 +23,14 @@ export const Button: React.FC<IButtonProps> = ({
     const styles = useButtonStyles({ progress });
 
     return (
-        <button
-            disabled={isLoading || Boolean(progress)}
-            {...props}
-            className={clsx(styles.button, className)}
-        >
-            {isLoading ? `Loading... (${progress}%)` : children}
-        </button>
+        <Ripples>
+            <button
+                disabled={isLoading || Boolean(progress)}
+                {...props}
+                className={clsx(styles.button, className)}
+            >
+                {isLoading ? `Loading... (${progress}%)` : children}
+            </button>
+        </Ripples>
     );
 };

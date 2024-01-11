@@ -1,6 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import { RouteNames } from "./constants";
 import { NavigationLayout } from "../layouts/NavigationLayout";
+import { DefaultLayout } from "../layouts/DefaultLayout";
 import { GrammarPage } from "../pages/Grammar";
 import { MainPage } from "../pages/Main";
 import { NotFound } from "../pages/NotFound";
@@ -29,9 +30,9 @@ export const routes: RouteObject[] = [
     {
         path: RouteNames.GRAMMAR_LESSON,
         element: (
-            <NavigationLayout>
+            <DefaultLayout>
                 <GrammarLessonPage />
-            </NavigationLayout>
+            </DefaultLayout>
         ),
     },
     {

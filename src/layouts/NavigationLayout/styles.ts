@@ -2,23 +2,38 @@ import { createUseStyles } from "react-jss";
 
 export const useNavigationLayoutStyles = createUseStyles({
     container: {
-        // paddingLeft: 12,
-        // paddingRight: 12,
-        paddingBottom: 58,
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        justifyContent: "space-between",
+        "@media(min-width: 420px)": {
+            maxWidth: 720,
+            margin: "auto",
+        },
+    },
+    body: {
+        height: "100vh",
+        overflow: "auto",
     },
     touchbar: {
-        position: "fixed",
+        position: "sticky",
         left: 0,
         bottom: 0,
         display: "flex",
         justifyContent: "space-around",
         alignItems: "stretch",
-        backgroundColor: "#242424",
+        backgroundColor: "#181818",
         paddingTop: 8,
         paddingBottom: 8,
-        width: "calc(100% - 8px)",
+        // width: "calc(100% - 8px)",
+        width: "100%",
         paddingLeft: 4,
         paddingRight: 4,
+        marginTop: 20,
+        "@media(min-height: 420px)": {
+            maxWidth: 720,
+        },
     },
     touchbarItem: {
         width: "20%",

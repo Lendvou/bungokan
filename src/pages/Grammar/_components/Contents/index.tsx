@@ -1,6 +1,12 @@
 import { Details } from "../../../../components/Details";
 import { useGrammarContentsStyles } from "./styles";
 import SearchSVG from "../../../../assets/icons/search.svg";
+import useAsyncLiveQuery from "../../../../database/_utils/useAsyncLiveQuery";
+import { GrammarCourses } from "../../../../database/grammarCourses";
+import { useNavigate } from "react-router-dom";
+import { db } from "../../../../database";
+import { ILessonListItem } from "../../../../database/lessons";
+import { Ripples } from "../../../../components/Ripples";
 
 const CONTENTS_LIST = [
     {
@@ -28,25 +34,65 @@ const CONTENTS_LIST = [
 ];
 
 export const GrammarContents = () => {
+    const navigate = useNavigate();
+
+    const { data, isLoading } = useAsyncLiveQuery(
+        (db) =>
+            db.lessons
+                .where({ courseName: GrammarCourses.CURE_DOLLY })
+                .toArray((arr) => {
+                    const result: ILessonListItem[] = arr.map((item) => ({
+                        ...item,
+                        content: undefined,
+                    }));
+                    return result;
+                }),
+        []
+    );
+
+    const handleTitleClick = (num: string) => {
+        navigate(`/grammar-lesson/${num}`);
+    };
+
     const styles = useGrammarContentsStyles();
+    if (isLoading) {
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}
+            >
+                Loading...
+            </div>
+        );
+    }
 
     return (
         <div className={styles.container}>
-            <div className={styles.courseName}>
-                Cure dolly organic japanese
+            <div className={styles.header}>
+                <div className={styles.headerInfo}>
+                    <span className={styles.grammarCourse}>Grammar course</span>
+                    <span className={styles.courseName}>
+                        Cure dolly organic japanese
+                    </span>
+                </div>
                 <img src={SearchSVG} alt="s" className={styles.searchIcon} />
             </div>
 
             <div className={styles.list}>
-                {CONTENTS_LIST.map((item) => (
+                {data?.map((item) => (
                     <div key={item.num} className={styles.listItem}>
                         <Details
-                            onClick={() => console.log("on click")}
+                            hideArrow={item.subtitles.length < 1}
+                            onClick={() => handleTitleClick(item.num)}
                             title={
                                 <div className={styles.title}>
-                                    <span className={styles.titleNum}>
-                                        {item.num}.
-                                    </span>
+                                    <div className={styles.titleNum}>
+                                        {item.num}
+                                    </div>
                                     <span>{item.title}</span>
                                 </div>
                             }

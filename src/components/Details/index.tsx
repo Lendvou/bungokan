@@ -8,6 +8,7 @@ interface IDetailsProps {
     title: React.ReactNode;
     children: React.ReactNode;
     className?: string;
+    hideArrow?: boolean;
 }
 
 export const Details: React.FC<IDetailsProps> = ({
@@ -15,6 +16,7 @@ export const Details: React.FC<IDetailsProps> = ({
     children,
     className,
     onClick,
+    hideArrow = false,
 }) => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
 
@@ -27,14 +29,16 @@ export const Details: React.FC<IDetailsProps> = ({
     return (
         <div className={clsx(styles.container, className)} onClick={onClick}>
             <div className={styles.title}>
-                {title}
+                <span className={styles.titleText}>{title}</span>
 
-                <img
-                    src={ArrowDown}
-                    alt="arrow"
-                    className={styles.arrow}
-                    onClick={handleArrowClick}
-                />
+                {!hideArrow && (
+                    <img
+                        src={ArrowDown}
+                        alt="arrow"
+                        className={styles.arrow}
+                        onClick={handleArrowClick}
+                    />
+                )}
             </div>
 
             <div

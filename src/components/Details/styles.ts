@@ -15,6 +15,9 @@ export const useDetailsStyles = createUseStyles<string, IUseDetailsStylesProps>(
             justifyContent: "space-between",
             alignItems: "center",
         },
+        titleText: {
+            paddingRight: 20,
+        },
         arrow: ({ isOpened }) => ({
             width: 20,
             padding: 10,

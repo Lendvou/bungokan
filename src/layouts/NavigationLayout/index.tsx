@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigationLayoutStyles } from "./styles";
 import { touchbarItems } from "./constants";
 import clsx from "clsx";
-import { useLocation, useNavigate } from "react-router-dom";
+import { ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 
 interface INavigationLayoutProps {
     children: React.ReactNode;
@@ -18,7 +18,10 @@ export const NavigationLayout: React.FC<INavigationLayoutProps> = ({
 
     return (
         <div className={styles.container}>
+            <ScrollRestoration />
+
             {children}
+            {/* <div className={styles.body}>{children}</div> */}
 
             <div className={styles.touchbar}>
                 {touchbarItems.map(({ name, icon, link }) => (

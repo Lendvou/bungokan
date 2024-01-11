@@ -1,28 +1,36 @@
 import Dexie, { Table } from "dexie";
-import { GRAMMAR_SCHEMA, IGrammarItem } from "./grammar";
+import { LESSONS_SCHEMA, ILessonItem } from "./lessons";
 import { IWordsSchema, WORDS_SCHEMA } from "./words";
 import { ASSETS_SCHEMA, IAsset } from "./assets";
+import { GRAMMAR_COURSES_SCHEMA, IGrammarCourses } from "./grammarCourses";
+import { IUserLesson, USER_LESSONS_SCHEMA } from "./userLessons";
 
 export enum TableNames {
-    GRAMMAR = "grammar",
+    LESSONS = "lessons",
+    USER_LESSONS = "userLessons",
     WORDS = "words",
     ASSETS = "assets",
+    GRAMMAR_COURSES = "grammarCourses",
 }
 
-export class TestDb extends Dexie {
-    [TableNames.WORDS]!: Table<IWordsSchema>;
-    [TableNames.ASSETS]!: Table<IAsset>;
-    [TableNames.GRAMMAR]!: Table<IGrammarItem>;
+export class BungokanDB extends Dexie {
+    words!: Table<IWordsSchema>;
+    assets!: Table<IAsset>;
+    lessons!: Table<ILessonItem>;
+    userLessons!: Table<IUserLesson>;
+    grammarCourses!: Table<IGrammarCourses>;
 
     constructor() {
-        super("testDb");
-        this.version(5).stores({
+        super("BungokanDB");
+        this.version(1).stores({
             [TableNames.WORDS]: WORDS_SCHEMA,
             [TableNames.ASSETS]: ASSETS_SCHEMA,
-            [TableNames.GRAMMAR]: GRAMMAR_SCHEMA,
+            [TableNames.LESSONS]: LESSONS_SCHEMA,
+            [TableNames.USER_LESSONS]: USER_LESSONS_SCHEMA,
+            [TableNames.GRAMMAR_COURSES]: GRAMMAR_COURSES_SCHEMA,
         });
     }
 }
 
-export const db = new TestDb();
+export const db = new BungokanDB();
 // console.log("[database/index.ts] rerender", db);

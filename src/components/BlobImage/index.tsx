@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import useAsyncLiveQuery from "../../database/_utils/useAsyncLiveQuery";
 
 interface IBlobImageProps {
@@ -12,7 +12,9 @@ export const BlobImage: React.FC<IBlobImageProps> = ({
 }) => {
     const { data } = useAsyncLiveQuery((db) => db.assets.get({ filename }));
 
-    const imageUrl = data ? URL.createObjectURL(data.blob) : "";
+    const imageUrl = useMemo(() => {
+        return data ? URL.createObjectURL(data.blob) : "";
+    }, [data]);
 
     return (
         <img

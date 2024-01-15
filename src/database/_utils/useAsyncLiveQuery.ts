@@ -1,23 +1,23 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { BungokanDB, db } from "..";
 
-export enum Status {
+enum Status {
     PENDING = "pending",
     RESOLVED = "resolved",
 }
 
-export type AsyncLiveQueryReturn<T = any> =
+type AsyncLiveQueryReturn<T = any> =
     | AsyncLiveQueryReturnPending
     | AsyncLiveQueryReturnResolved<T>;
 
-export interface AsyncLiveQueryReturnPending {
+interface AsyncLiveQueryReturnPending {
     isLoading: true;
     isSuccess: false;
     status: Status.PENDING;
-    data: null;
+    data: undefined;
 }
 
-export interface AsyncLiveQueryReturnResolved<T = any> {
+interface AsyncLiveQueryReturnResolved<T = any> {
     isLoading: false;
     isSuccess: true;
     status: Status.RESOLVED;
@@ -37,7 +37,7 @@ const useAsyncLiveQuery = <T>(
             });
         },
         deps,
-        [null, Status.PENDING]
+        [undefined, Status.PENDING]
     );
 
     return {

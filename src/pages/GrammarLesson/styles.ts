@@ -3,6 +3,8 @@ import { createUseStyles } from "react-jss";
 export const useGrammarLessonStyles = createUseStyles({
     container: {
         position: "relative",
+        // overflow: "auto",
+        // height: "100%",
     },
     header: {
         padding: "10px 12px",

@@ -1,69 +1,61 @@
 import { useParams } from "react-router-dom";
 import useAsyncLiveQuery from "../../database/_utils/useAsyncLiveQuery";
 import { useGrammarLessonStyles } from "./styles";
-import { Content } from "../../database/lessons";
 import { BlobImage } from "../../components/BlobImage";
 import { GrammarLessonHeader } from "./_components/Header";
 import { PageLoader } from "../../components/PageLoader";
-import { Button } from "../../components/Button";
+import { useTrackLessonsProgress } from "./_utils/useTrackLessonsProgress";
+import { db } from "../../database";
 
 export const GrammarLessonPage = () => {
     const params = useParams();
 
-    const { data } = useAsyncLiveQuery((db) =>
+    const { data: lesson } = useAsyncLiveQuery((db) =>
         db.lessons.get({ num: params.num })
     );
-
     const { data: grammarMeta } = useAsyncLiveQuery(
-        (db) => db.grammarCourses.get({ courseName: data?.courseName || "" }),
-        [data]
+        (db) => db.grammarCourses.get({ courseName: lesson?.courseName || "" }),
+        [lesson]
+    );
+    const { data: userLesson } = useAsyncLiveQuery(
+        (db) => db.userLessons.get({ num: lesson?.num || "" }),
+        [lesson]
     );
 
+    const handleClickDone = async () => {
+        if (!lesson) {
+            return;
+        }
+        if (!userLesson?.id) {
+            return;
+        }
+        db.userLessons.update(userLesson.id, {
+            learningProgress: userLesson.learningProgress === 100 ? 0 : 100,
+        });
+    };
+
+    useTrackLessonsProgress(lesson);
+
     const styles = useGrammarLessonStyles();
-    if (!data || !grammarMeta) {
+    if (!lesson || !grammarMeta) {
         return <PageLoader />;
     }
-
-    const renderContent = (item: Content, i: number) => {
-        if (item.type === "image") {
-            return (
-                <BlobImage
-                    key={i}
-                    filename={item.content}
-                    className={styles.image}
-                />
-            );
-        }
-        if (item.type === "newline") {
-            return <div key={i} className={styles.newline} />;
-        }
-        if (item.type === "subtitle") {
-            return (
-                <div key={i} className={styles.subtitle}>
-                    {item.content}
-                </div>
-            );
-        }
-        return (
-            <span key={i} className={styles.text}>
-                {item.content}
-            </span>
-        );
-    };
 
     return (
         <div className={styles.container}>
             <GrammarLessonHeader
-                data={data}
+                data={lesson}
                 courseFullName={grammarMeta?.fullName}
+                learningProgress={userLesson?.learningProgress}
+                onClickDone={handleClickDone}
             />
 
             <div className={styles.title}>
-                Lesson {data.num}: {data.title}
+                Lesson {lesson.num}: {lesson.title}
             </div>
 
             <div className={styles.body}>
-                {data.content.map((content, i) =>
+                {lesson.content.map((content, i) =>
                     content.type === "image" ? (
                         <BlobImage
                             key={i}
@@ -82,7 +74,6 @@ export const GrammarLessonPage = () => {
                         </span>
                     )
                 )}
-                {/* {data.content.map((content, i) => renderContent(content, i))} */}
             </div>
         </div>
     );

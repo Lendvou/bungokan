@@ -1,6 +1,7 @@
 import { useGrammarLessonHeaderStyles } from "./styles";
 import BackIcon from "../../../../assets/icons/back.svg";
 import DoneIcon from "../../../../assets/icons/done.svg";
+import DoneSuccessIcon from "../../../../assets/icons/done-success.svg";
 import { ILessonItem } from "../../../../database/lessons";
 import { useNavigate } from "react-router-dom";
 
@@ -8,16 +9,20 @@ interface IGrammarLessonHeaderProps {
     data: ILessonItem;
     courseFullName: string;
     isHidden?: boolean;
+    learningProgress?: number;
+    onClickDone: () => void;
 }
 
 export const GrammarLessonHeader: React.FC<IGrammarLessonHeaderProps> = ({
     data,
     courseFullName,
     isHidden = false,
+    learningProgress,
+    onClickDone,
 }) => {
     const navigate = useNavigate();
 
-    const styles = useGrammarLessonHeaderStyles({ isHidden });
+    const styles = useGrammarLessonHeaderStyles({ isHidden, learningProgress });
     return (
         <div className={styles.header}>
             <img
@@ -32,7 +37,12 @@ export const GrammarLessonHeader: React.FC<IGrammarLessonHeaderProps> = ({
                     {data.num}. {data.title}
                 </div>
             </div>
-            <img src={DoneIcon} alt="completed" className={styles.doneIcon} />
+            <img
+                src={learningProgress === 100 ? DoneSuccessIcon : DoneIcon}
+                alt="completed"
+                className={styles.doneIcon}
+                onClick={onClickDone}
+            />
         </div>
     );
 };

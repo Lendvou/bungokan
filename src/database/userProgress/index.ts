@@ -1,9 +1,10 @@
 export interface IUserProgressItem {
     id?: number;
-    dayTimestamp: number;
-    lessons: number;
-    vocab: number;
-    kanji: number;
+    dayTimestamp: Date;
+    lessonsLearningTime: number;
+    vocabLearningTime: number;
+    kanjiLearningTime: number;
 }
 
-export const USER_PROGRESS_SCHEMA = "++id, dayTimestamp, lessons, vocab, kanji";
+export const USER_PROGRESS_SCHEMA =
+    "++id, dayTimestamp, lessonsLearningTime, vocabLearningTime, kanjiLearningTime";

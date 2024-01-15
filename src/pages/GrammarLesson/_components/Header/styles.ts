@@ -2,6 +2,7 @@ import { createUseStyles } from "react-jss";
 
 interface IUseGrammarLessonHeaderStylesProps {
     isHidden: boolean;
+    learningProgress?: number;
 }
 
 export const useGrammarLessonHeaderStyles = createUseStyles<

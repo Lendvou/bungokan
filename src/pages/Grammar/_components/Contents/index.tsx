@@ -4,34 +4,7 @@ import SearchSVG from "../../../../assets/icons/search.svg";
 import useAsyncLiveQuery from "../../../../database/_utils/useAsyncLiveQuery";
 import { GrammarCourses } from "../../../../database/grammarCourses";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../../../database";
 import { ILessonListItem } from "../../../../database/lessons";
-import { Ripples } from "../../../../components/Ripples";
-
-const CONTENTS_LIST = [
-    {
-        num: "1",
-        title: "Type of sentences",
-        subtitles: [
-            "The japanese core sentences",
-            "The particle Ga",
-            "The Verb sentences",
-        ],
-    },
-    {
-        num: "2b",
-        title: "Omitting the subject",
-        subtitles: ["The invisible carriage", "The particle Wo"],
-    },
-    {
-        num: "3",
-        title: "Te-oku vs te-shimau, helper verb secrets. ておく てしまう",
-        subtitles: [
-            `The particle Wa, what it isn't, what it is, Wa doesn't mean "="`,
-            "Logical / non-logical particle",
-        ],
-    },
-];
 
 export const GrammarContents = () => {
     const navigate = useNavigate();

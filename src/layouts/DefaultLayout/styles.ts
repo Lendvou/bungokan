@@ -5,6 +5,8 @@ export const useDefaultLayoutStyles = createUseStyles({
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        // height: "100vh",
+        // overflow: "auto",
         justifyContent: "space-between",
         "@media(min-width: 420px)": {
             maxWidth: 720,

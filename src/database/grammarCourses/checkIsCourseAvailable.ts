@@ -8,4 +8,4 @@ interface ICheckIsCourseAvailableParams {
 export const checkIsCourseAvailable = (
     db: BungokanDB,
     { courseName }: ICheckIsCourseAvailableParams
-) => db.grammarCourses.get({ courseName });
+) => db.grammarCourses.get({ courseName }).then((res) => Boolean(res));

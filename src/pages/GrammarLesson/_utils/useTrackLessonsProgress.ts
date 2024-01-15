@@ -55,6 +55,7 @@ export const useTrackLessonsProgress = (lesson?: ILessonItem) => {
                     num: lesson.num,
                     totalLearningTime: 1,
                     learningProgress: 0,
+                    courseName: lesson.courseName,
                 });
             } else {
                 db.userLessons.update(currentUserLesson.id, {

@@ -10,7 +10,7 @@ export const GrammarPage = () => {
         checkIsCourseAvailable(db, { courseName: GrammarCourses.CURE_DOLLY })
     );
 
-    const isInstalled = isLoading || Boolean(data);
+    const isInstalled = Boolean(isLoading || data);
 
     const styles = useGrammarPageStyles();
 

@@ -25,7 +25,7 @@ export class BungokanDB extends Dexie {
 
     constructor() {
         super("BungokanDB");
-        this.version(3).stores({
+        this.version(5).stores({
             [TableNames.USER_PROGRESS]: USER_PROGRESS_SCHEMA,
             [TableNames.LESSONS]: LESSONS_SCHEMA,
             [TableNames.USER_LESSONS]: USER_LESSONS_SCHEMA,

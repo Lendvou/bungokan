@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IUserProgressItem } from "../../../../database/userProgress";
 import { Card } from "../../../../components/Card";
 import { useOverallProgressStyles } from "./styles";
@@ -49,6 +49,10 @@ export const OverallProgress: React.FC<IOverallProgressProps> = ({
     const [selectedDay, setSelectedDay] = useState<IDayProgressItem>(
         dailyProgressList[dailyProgressList.length - 1]
     );
+
+    useEffect(() => {
+        setSelectedDay(dailyProgressList[dailyProgressList.length - 1]);
+    }, [dailyProgressList]);
 
     const styles = useOverallProgressStyles();
     return (

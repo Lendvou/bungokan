@@ -1,7 +1,9 @@
 import { createUseStyles } from "react-jss";
 
 export const useOverallProgressStyles = createUseStyles({
-    container: {},
+    container: {
+        marginBottom: 20,
+    },
     header: {
         display: "flex",
         flexDirection: "column",

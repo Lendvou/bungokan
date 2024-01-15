@@ -2,25 +2,15 @@ import { Details } from "../../../../components/Details";
 import { useGrammarContentsStyles } from "./styles";
 import SearchSVG from "../../../../assets/icons/search.svg";
 import useAsyncLiveQuery from "../../../../database/_utils/useAsyncLiveQuery";
-import { GrammarCourses } from "../../../../database/grammarCourses";
 import { useNavigate } from "react-router-dom";
-import { ILessonListItem } from "../../../../database/lessons";
+import { getLessonsListByType } from "../../../../database/lessons/getLessonsListByType";
+import { GrammarCourses } from "../../../../database/grammarCourses";
 
 export const GrammarContents = () => {
     const navigate = useNavigate();
 
-    const { data, isLoading } = useAsyncLiveQuery(
-        (db) =>
-            db.lessons
-                .where({ courseName: GrammarCourses.CURE_DOLLY })
-                .toArray((arr) => {
-                    const result: ILessonListItem[] = arr.map((item) => ({
-                        ...item,
-                        content: undefined,
-                    }));
-                    return result;
-                }),
-        []
+    const { data, isLoading } = useAsyncLiveQuery((db) =>
+        getLessonsListByType(db, { courseName: GrammarCourses.CURE_DOLLY })
     );
 
     const handleTitleClick = (num: string) => {

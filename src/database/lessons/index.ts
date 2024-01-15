@@ -31,6 +31,4 @@ export interface ILessonItem {
     content: Content[];
 }
 
-export interface ILessonListItem extends Omit<ILessonItem, "content"> {}
-
 export const LESSONS_SCHEMA = "++id, courseName, title, num, *subtitles";

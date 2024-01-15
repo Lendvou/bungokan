@@ -1,20 +1,10 @@
 import { useMainPageStyles } from "./styles";
 import { OverallProgress } from "./_components/OverallProgress";
 import useAsyncLiveQuery from "../../database/_utils/useAsyncLiveQuery";
-import moment from "moment";
+import { getUserDailyProgress } from "../../database/userProgress/getUserDailyProgress";
 
 export const MainPage = () => {
-    const { data: overallProgress } = useAsyncLiveQuery((db) =>
-        db.userProgress
-            .where("dayTimestamp")
-            .between(
-                moment().subtract(28, "days").startOf("day").toDate(),
-                moment().toDate()
-            )
-            .toArray()
-    );
-
-    // console.log("overallProgress", overallProgress);
+    const { data: overallProgress } = useAsyncLiveQuery(getUserDailyProgress);
 
     const styles = useMainPageStyles();
     return (

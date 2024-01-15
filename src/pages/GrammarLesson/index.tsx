@@ -6,27 +6,31 @@ import { GrammarLessonHeader } from "./_components/Header";
 import { PageLoader } from "../../components/PageLoader";
 import { useTrackLessonsProgress } from "./_utils/useTrackLessonsProgress";
 import { db } from "../../database";
+import { getLessonByNum } from "../../database/lessons/getLessonByNum";
+import { getGrammarMetaInfo } from "../../database/grammarCourses/getGrammarMetaInfo";
+import { getUserLessonByNum } from "../../database/userLessons/getUserLessonByNum";
 
 export const GrammarLessonPage = () => {
     const params = useParams();
 
-    const { data: lesson } = useAsyncLiveQuery((db) =>
-        db.lessons.get({ num: params.num })
+    const { data: lesson } = useAsyncLiveQuery(
+        (db) => getLessonByNum(db, { num: params!.num }),
+        [params],
+        { skip: !params }
     );
     const { data: grammarMeta } = useAsyncLiveQuery(
-        (db) => db.grammarCourses.get({ courseName: lesson?.courseName || "" }),
-        [lesson]
+        (db) => getGrammarMetaInfo(db, { courseName: lesson!.courseName }),
+        [lesson],
+        { skip: !lesson }
     );
     const { data: userLesson } = useAsyncLiveQuery(
-        (db) => db.userLessons.get({ num: lesson?.num || "" }),
-        [lesson]
+        (db) => getUserLessonByNum(db, { num: lesson!.num }),
+        [lesson],
+        { skip: !lesson }
     );
 
     const handleClickDone = async () => {
-        if (!lesson) {
-            return;
-        }
-        if (!userLesson?.id) {
+        if (!lesson || !userLesson?.id) {
             return;
         }
         db.userLessons.update(userLesson.id, {

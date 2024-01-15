@@ -10,7 +10,7 @@ export const useTrackLessonsProgress = (lesson?: ILessonItem) => {
             return;
         }
 
-        const updateOnScroll = debounce(async (e: Event) => {
+        const updateProgressOnScroll = debounce(async (e: Event) => {
             const userLesson = await db.userLessons.get({ num: lesson.num });
             if (!userLesson?.id) {
                 return;
@@ -35,8 +35,9 @@ export const useTrackLessonsProgress = (lesson?: ILessonItem) => {
             }
         }, 200);
 
-        window.addEventListener("scroll", updateOnScroll);
-        return () => window.removeEventListener("scroll", updateOnScroll);
+        window.addEventListener("scroll", updateProgressOnScroll);
+        return () =>
+            window.removeEventListener("scroll", updateProgressOnScroll);
     }, [lesson]);
 
     useEffect(() => {

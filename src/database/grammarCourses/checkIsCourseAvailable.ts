@@ -1,11 +1,5 @@
 import { GrammarCourses } from ".";
-import { BungokanDB } from "..";
+import { db } from "..";
 
-interface ICheckIsCourseAvailableParams {
-    courseName: GrammarCourses;
-}
-
-export const checkIsCourseAvailable = (
-    db: BungokanDB,
-    { courseName }: ICheckIsCourseAvailableParams
-) => db.grammarCourses.get({ courseName }).then((res) => Boolean(res));
+export const checkIsCourseAvailable = (courseName: GrammarCourses) =>
+    db.grammarCourses.get({ courseName }).then((res) => Boolean(res));

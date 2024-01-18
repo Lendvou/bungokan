@@ -1,7 +1,7 @@
 import moment from "moment";
-import { BungokanDB } from "..";
+import { db } from "..";
 
-export const getUserDailyProgress = (db: BungokanDB) =>
+export const getUserDailyProgress = () =>
     db.userProgress
         .where("dayTimestamp")
         .between(

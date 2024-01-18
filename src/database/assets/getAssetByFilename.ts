@@ -1,10 +1,4 @@
-import { BungokanDB } from "..";
+import { db } from "..";
 
-interface IGetAssetByFilenameParams {
-    filename: string;
-}
-
-export const getAssetByFilename = (
-    db: BungokanDB,
-    { filename }: IGetAssetByFilenameParams
-) => db.assets.get({ filename });
+export const getAssetByFilename = (filename: string) =>
+    db.assets.get({ filename });

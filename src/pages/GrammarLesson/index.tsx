@@ -14,17 +14,17 @@ export const GrammarLessonPage = () => {
     const params = useParams();
 
     const { data: lesson } = useAsyncLiveQuery(
-        (db) => getLessonByNum(db, { num: params!.num }),
+        () => getLessonByNum(params!.num),
         [params],
         { skip: !params }
     );
     const { data: grammarMeta } = useAsyncLiveQuery(
-        (db) => getGrammarMetaInfo(db, { courseName: lesson!.courseName }),
+        () => getGrammarMetaInfo(lesson!.courseName),
         [lesson],
         { skip: !lesson }
     );
     const { data: userLesson } = useAsyncLiveQuery(
-        (db) => getUserLessonByNum(db, { num: lesson!.num }),
+        () => getUserLessonByNum(lesson!.num),
         [lesson],
         { skip: !lesson }
     );

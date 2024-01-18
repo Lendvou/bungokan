@@ -1,10 +1,5 @@
-import { BungokanDB } from "..";
+import { GrammarCourses } from ".";
+import { db } from "..";
 
-interface IGetGrammarMetaInfoParams {
-    courseName: string;
-}
-
-export const getGrammarMetaInfo = (
-    db: BungokanDB,
-    { courseName }: IGetGrammarMetaInfoParams
-) => db.grammarCourses.get({ courseName: courseName });
+export const getGrammarMetaInfo = (courseName: GrammarCourses) =>
+    db.grammarCourses.get({ courseName: courseName });

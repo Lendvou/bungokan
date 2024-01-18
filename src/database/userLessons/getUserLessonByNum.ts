@@ -1,10 +1,3 @@
-import { BungokanDB } from "..";
+import { db } from "..";
 
-interface IGetUserLessonByNumParams {
-    num: string;
-}
-
-export const getUserLessonByNum = (
-    db: BungokanDB,
-    { num }: IGetUserLessonByNumParams
-) => db.userLessons.get({ num });
+export const getUserLessonByNum = (num: string) => db.userLessons.get({ num });

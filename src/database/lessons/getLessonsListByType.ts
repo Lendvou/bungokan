@@ -1,21 +1,34 @@
 import { ILessonItem } from ".";
-import { BungokanDB } from "..";
+import { db } from "..";
 import { GrammarCourses } from "../grammarCourses";
+import { IUserLesson } from "../userLessons";
 
-export interface ILessonListItem extends Omit<ILessonItem, "content"> {}
-
-interface IGetLessonsListByTypeParams {
-    courseName: GrammarCourses;
+export interface ILessonListItem extends Omit<ILessonItem, "content"> {
+    userLesson?: IUserLesson;
 }
 
-export const getLessonsListByType = (
-    db: BungokanDB,
-    { courseName }: IGetLessonsListByTypeParams
-) =>
-    db.lessons.where({ courseName }).toArray((arr) => {
-        const result: ILessonListItem[] = arr.map((item) => ({
-            ...item,
-            content: undefined,
-        }));
-        return result;
-    });
+export const getLessonsListByType = async (
+    courseName: GrammarCourses
+): Promise<ILessonListItem[]> => {
+    const lessons: ILessonListItem[] = await db.lessons
+        .where({ courseName })
+        .toArray((arr) => {
+            const result = arr.map((item: any) => {
+                delete item.content;
+                return item as ILessonListItem;
+            });
+            return result;
+        });
+
+    const result: ILessonListItem[] = await db.userLessons
+        .where("num")
+        .anyOf(lessons.map((item) => item.num))
+        .toArray((userLessons) =>
+            lessons.map((lesson) => ({
+                ...lesson,
+                userLesson: userLessons.find((item) => item.num === lesson.num),
+            }))
+        );
+
+    return result;
+};

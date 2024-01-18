@@ -6,8 +6,8 @@ import { GrammarCourses } from "../../database/grammarCourses";
 import { checkIsCourseAvailable } from "../../database/grammarCourses/checkIsCourseAvailable";
 
 export const GrammarPage = () => {
-    const { data, isLoading } = useAsyncLiveQuery((db) =>
-        checkIsCourseAvailable(db, { courseName: GrammarCourses.CURE_DOLLY })
+    const { data, isLoading } = useAsyncLiveQuery(() =>
+        checkIsCourseAvailable(GrammarCourses.CURE_DOLLY)
     );
 
     const isInstalled = Boolean(isLoading || data);

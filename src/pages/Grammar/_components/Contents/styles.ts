@@ -62,6 +62,15 @@ export const useGrammarContentsStyles = createUseStyles({
         alignItems: "center",
         fontWeight: 500,
     },
+    doneIcon: {
+        width: 37,
+        marginLeft: "auto",
+        padding: 8,
+        marginRight: 6,
+        "& svg": {
+            fill: "red",
+        },
+    },
     subtitles: {
         // marginTop: 10,
         padding: "8px 0",

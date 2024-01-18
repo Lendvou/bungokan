@@ -12,7 +12,7 @@ export const BlobImage: React.FC<IBlobImageProps> = ({
     className,
 }) => {
     const { data } = useAsyncLiveQuery(
-        (db) => getAssetByFilename(db, { filename }),
+        () => getAssetByFilename(filename),
         [filename]
     );
 

@@ -18,12 +18,16 @@
         "moment": "^2.30.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-inlinesvg": "^4.1.0",
         "react-jss": "^10.10.0",
         "react-router-dom": "^6.21.1",
+        "react-svg": "^16.1.32",
+        "vite-plugin-svgr": "^4.2.0",
         "wanakana": "^5.3.1"
     },
     "devDependencies": {
         "@types/lodash.debounce": "^4.0.9",
+        "@types/node": "^20.11.5",
         "@types/react": "^18.2.43",
         "@types/react-dom": "^18.2.17",
         "@types/react-router-dom": "^5.3.3",

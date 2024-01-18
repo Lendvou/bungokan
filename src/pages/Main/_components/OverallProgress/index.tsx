@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { IUserProgressItem } from "../../../../database/userProgress";
-import { Card } from "../../../../components/Card";
+import { IUserProgressItem } from "@/database/userProgress";
+import { Card } from "@/components/Card";
 import { useOverallProgressStyles } from "./styles";
 import moment from "moment";
 import clsx from "clsx";
-import DoneIcon from "../../../../assets/icons/done.svg";
+import DoneIcon from "@/assets/icons/done.svg?react";
 
 interface IOverallProgressProps {
     progressData?: IUserProgressItem[];
@@ -84,13 +84,14 @@ export const OverallProgress: React.FC<IOverallProgressProps> = ({
                             }}
                         />
                         <div className={styles.doneIconWrapper}>
-                            <img
-                                src={DoneIcon}
-                                alt="d"
-                                className={clsx(styles.doneIcon, {
-                                    [styles.doneIcon__visible]:
-                                        item.timeSpent >= DAILY_LEARNING_GOAL,
-                                })}
+                            <DoneIcon
+                                className={styles.doneIcon}
+                                width="50%"
+                                color={
+                                    item.timeSpent >= DAILY_LEARNING_GOAL
+                                        ? "#ffffff"
+                                        : "transparent"
+                                }
                             />
                         </div>
                     </div>

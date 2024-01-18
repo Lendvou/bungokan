@@ -52,8 +52,8 @@ export const useOverallProgressStyles = createUseStyles({
         alignItems: "center",
     },
     doneIcon: {
-        width: "50%",
-        opacity: 0,
+        // width: "50%",
+        // opacity: 0,
         transition: "0.4s",
     },
     doneIcon__visible: {

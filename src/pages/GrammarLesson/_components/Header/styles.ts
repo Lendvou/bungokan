@@ -22,13 +22,7 @@ export const useGrammarLessonHeaderStyles = createUseStyles<
         overflow: "hidden",
         height: 51,
     }),
-    backIcon: {
-        width: 20,
-        cursor: "pointer",
-        borderRadius: 1000,
-    },
     doneIcon: {
-        width: 25,
         marginLeft: "auto",
     },
     title: {

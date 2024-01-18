@@ -29,9 +29,6 @@ export const useGrammarContentsStyles = createUseStyles({
         fontWeight: 500,
         fontSize: 14,
     },
-    searchIcon: {
-        width: 15,
-    },
     list: {},
     listItem: {
         paddingBottom: 6,
@@ -62,14 +59,17 @@ export const useGrammarContentsStyles = createUseStyles({
         alignItems: "center",
         fontWeight: 500,
     },
-    doneIcon: {
-        width: 37,
+    infoBlock: {
         marginLeft: "auto",
-        padding: 8,
         marginRight: 6,
-        "& svg": {
-            fill: "red",
-        },
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+    },
+    lessonProgress: {
+        // marginLeft: 8,
+        // marginRight: 8,
+        fontSize: 12,
     },
     subtitles: {
         // marginTop: 10,

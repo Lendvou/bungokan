@@ -46,18 +46,9 @@ export const useNavigationLayoutStyles = createUseStyles({
         "-webkit-tap-highlight-color": "transparent",
         userSelect: "none",
     },
-    touchbarItem__settings: {
-        "& img": {
-            marginTop: 3,
-            width: "30%",
-        },
-    },
     touchbarItem__active: {
         backgroundColor: "#3E3E3E",
         borderRadius: 4,
-    },
-    icon: {
-        width: "35%",
     },
     name: {
         width: "100%",

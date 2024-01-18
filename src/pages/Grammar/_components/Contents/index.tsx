@@ -1,12 +1,11 @@
-import { useGrammarContentsStyles } from "./styles";
-import SearchSVG from "../../../../assets/icons/search.svg";
-import useAsyncLiveQuery from "../../../../database/_utils/useAsyncLiveQuery";
 import { useNavigate } from "react-router-dom";
-import { getLessonsListByType } from "../../../../database/lessons/getLessonsListByType";
-import { GrammarCourses } from "../../../../database/grammarCourses";
-import DoneIcon from "../../../../assets/icons/done.svg";
-import DoneSuccessIcon from "../../../../assets/icons/done-success.svg";
-import { updateLessonLearnedStatus } from "../../../../database/userLessons/updateLessonLearnedStatus";
+import useAsyncLiveQuery from "@/database/_utils/useAsyncLiveQuery";
+import { getLessonsListByType } from "@/database/lessons/getLessonsListByType";
+import { GrammarCourses } from "@/database/grammarCourses";
+import { updateLessonLearnedStatus } from "@/database/userLessons/updateLessonLearnedStatus";
+import SearchIcon from "@/assets/icons/search.svg?react";
+import DoneIcon from "@/assets/icons/done.svg?react";
+import { useGrammarContentsStyles } from "./styles";
 
 export const GrammarContents = () => {
     const navigate = useNavigate();
@@ -21,7 +20,7 @@ export const GrammarContents = () => {
         navigate(`/grammar-lesson/${num}`);
     };
     const handleClickDone = (
-        e: React.MouseEvent<HTMLImageElement, MouseEvent>,
+        e: React.MouseEvent<SVGSVGElement, MouseEvent>,
         num: string
     ) => {
         e.stopPropagation();
@@ -53,7 +52,7 @@ export const GrammarContents = () => {
                         Cure dolly organic japanese
                     </span>
                 </div>
-                <img src={SearchSVG} alt="s" className={styles.searchIcon} />
+                <SearchIcon width={18} height={"100%"} />
             </div>
 
             <div className={styles.list}>
@@ -67,41 +66,29 @@ export const GrammarContents = () => {
                             <div className={styles.titleNum}>{item.num}</div>
                             <span>{item.title}</span>
 
-                            <img
-                                src={
-                                    item.userLesson?.learningProgress === 100
-                                        ? DoneSuccessIcon
-                                        : DoneIcon
-                                }
-                                alt="s"
-                                className={styles.doneIcon}
-                                onClick={(e) => handleClickDone(e, item.num)}
-                            />
-                        </div>
-
-                        {/* <Details
-                            hideArrow={item.subtitles.length < 1}
-                            onClick={() => handleTitleClick(item.num)}
-                            title={
-                                <div className={styles.title}>
-                                    <div className={styles.titleNum}>
-                                        {item.num}
-                                    </div>
-                                    <span>{item.title}</span>
-                                </div>
-                            }
-                        >
-                            <div className={styles.subtitles}>
-                                {item.subtitles.map((subtitle) => (
-                                    <div
-                                        key={subtitle}
-                                        className={styles.subtitle}
-                                    >
-                                        {subtitle}
-                                    </div>
-                                ))}
+                            <div className={styles.infoBlock}>
+                                <DoneIcon
+                                    width={23}
+                                    height={23}
+                                    color={
+                                        item.userLesson?.learningProgress ===
+                                        100
+                                            ? "#00B489"
+                                            : "#ffffff"
+                                    }
+                                    onClick={(e) =>
+                                        handleClickDone(e, item.num)
+                                    }
+                                />
+                                {![0, 100].includes(
+                                    item.userLesson?.learningProgress || 0
+                                ) && (
+                                    <span className={styles.lessonProgress}>
+                                        {item.userLesson?.learningProgress}%
+                                    </span>
+                                )}
                             </div>
-                        </Details> */}
+                        </div>
                     </div>
                 ))}
             </div>

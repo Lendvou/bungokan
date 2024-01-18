@@ -1,9 +1,9 @@
 import React from "react";
-import { Card } from "../../../../components/Card";
+import { Card } from "@/components/Card";
 import { useGrammarProgressStyles } from "./styles";
-import useAsyncLiveQuery from "../../../../database/_utils/useAsyncLiveQuery";
-import { getLessonsToStudy } from "../../../../database/userLessons/getLessonsToStudy";
-import BackIcon from "../../../../assets/icons/back.svg";
+import useAsyncLiveQuery from "@/database/_utils/useAsyncLiveQuery";
+import { getLessonsToStudy } from "@/database/userLessons/getLessonsToStudy";
+import BackIcon from "@/assets/icons/back.svg?react";
 import { useNavigate } from "react-router-dom";
 
 interface IGrammarProgressProps {
@@ -44,9 +44,9 @@ export const GrammarProgress: React.FC<IGrammarProgressProps> = ({ asdf }) => {
                                 </div>
                                 <span>{lesson.title}</span>
 
-                                <img
-                                    src={BackIcon}
-                                    alt="->"
+                                <BackIcon
+                                    width={40}
+                                    height="100%"
                                     className={styles.gotoIcon}
                                 />
                             </div>

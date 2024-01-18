@@ -37,7 +37,7 @@ export const useGrammarProgressStyles = createUseStyles({
         fontWeight: 500,
     },
     gotoIcon: {
-        width: 40,
+        // width: 40,
         transform: "rotate(180deg)",
         marginLeft: "auto",
         padding: 10,

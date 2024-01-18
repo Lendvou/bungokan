@@ -21,21 +21,18 @@ export const NavigationLayout: React.FC<INavigationLayoutProps> = ({
             <ScrollRestoration />
 
             {children}
-            {/* <div className={styles.body}>{children}</div> */}
 
             <div className={styles.touchbar}>
-                {touchbarItems.map(({ name, icon, link }) => (
+                {touchbarItems.map(({ name, Icon, link }) => (
                     <div
                         key={name}
                         className={clsx(styles.touchbarItem, {
-                            [styles.touchbarItem__settings]:
-                                name === "Settings",
                             [styles.touchbarItem__active]:
                                 location.pathname === link,
                         })}
                         onClick={() => navigate(link, { replace: true })}
                     >
-                        <img src={icon} alt={name} className={styles.icon} />
+                        <Icon width={"35%"} height={"100%"} />
                         <span className={styles.name}>{name}</span>
                     </div>
                 ))}

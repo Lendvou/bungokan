@@ -19,7 +19,7 @@ export const useDetailsStyles = createUseStyles<string, IUseDetailsStylesProps>(
             paddingRight: 20,
         },
         arrow: ({ isOpened }) => ({
-            width: 40,
+            // width: 40,
             padding: 10,
             transform: isOpened ? `rotate(${180}deg)` : null,
             transition: "0.2s",

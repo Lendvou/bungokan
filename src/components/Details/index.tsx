@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDetailsStyles } from "./styles";
 import clsx from "clsx";
-import ArrowDown from "../../assets/icons/arrow-down.svg";
+import ArrowDown from "@/assets/icons/arrow-down.svg?react";
 
 interface IDetailsProps {
     onClick?: () => void;
@@ -20,7 +20,7 @@ export const Details: React.FC<IDetailsProps> = ({
 }) => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
 
-    const handleArrowClick: React.MouseEventHandler<HTMLImageElement> = (e) => {
+    const handleArrowClick: React.MouseEventHandler<SVGSVGElement> = (e) => {
         e.stopPropagation();
         setIsOpened((v) => !v);
     };
@@ -32,10 +32,9 @@ export const Details: React.FC<IDetailsProps> = ({
                 <span className={styles.titleText}>{title}</span>
 
                 {!hideArrow && (
-                    <img
-                        src={ArrowDown}
-                        alt="arrow"
-                        className={styles.arrow}
+                    <ArrowDown
+                        width={20}
+                        height={20}
                         onClick={handleArrowClick}
                     />
                 )}

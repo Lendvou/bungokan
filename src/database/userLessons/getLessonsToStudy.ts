@@ -1,3 +1,4 @@
+import { sleep } from "@/utils/sleep";
 import { db } from "..";
 import { GrammarCourses } from "../grammarCourses";
 import { ILessonItem } from "../lessons";
@@ -14,6 +15,8 @@ export const getLessonsToStudy =
                 courseName: GrammarCourses.CURE_DOLLY,
             })
             .sortBy("num");
+
+        // await sleep(1000);
 
         const pendingLessons = userLessons.filter(
             (item) =>

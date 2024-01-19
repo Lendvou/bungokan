@@ -5,6 +5,7 @@ import useAsyncLiveQuery from "@/database/_utils/useAsyncLiveQuery";
 import { getLessonsToStudy } from "@/database/userLessons/getLessonsToStudy";
 import BackIcon from "@/assets/icons/back.svg?react";
 import { useNavigate } from "react-router-dom";
+import { ContentLoader } from "../../../../components/ContentLoader/index";
 
 interface IGrammarProgressProps {
     asdf?: string;
@@ -13,7 +14,7 @@ interface IGrammarProgressProps {
 export const GrammarProgress: React.FC<IGrammarProgressProps> = ({ asdf }) => {
     const navigate = useNavigate();
 
-    const { data } = useAsyncLiveQuery(getLessonsToStudy);
+    const { data, isLoading } = useAsyncLiveQuery(getLessonsToStudy);
     console.log("data", data);
 
     const styles = useGrammarProgressStyles();
@@ -24,36 +25,44 @@ export const GrammarProgress: React.FC<IGrammarProgressProps> = ({ asdf }) => {
                 <span>Grammar</span>
             </div>
 
-            {data ? (
-                <div className={styles.lessons}>
-                    <span className={styles.lessonType}>
-                        {data.type === "next" ? "To study" : "Pending"}
-                    </span>
+            <ContentLoader
+                isLoading={isLoading}
+                loaderSizeScale={0.6}
+                content={() => (
+                    <div className={styles.lessons}>
+                        <span className={styles.lessonType}>
+                            {data!.type === "next" ? "To study" : "Pending"}
+                        </span>
 
-                    <div className={styles.lessonsList}>
-                        {data.content.map((lesson) => (
-                            <div
-                                key={lesson.id}
-                                className={styles.title}
-                                onClick={() =>
-                                    navigate(`/grammar-lesson/${lesson.num}`)
-                                }
-                            >
-                                <div className={styles.titleNum}>
-                                    {lesson.num}
+                        <div className={styles.lessonsList}>
+                            {data!.content.map((lesson) => (
+                                <div
+                                    key={lesson.id}
+                                    className={styles.title}
+                                    onClick={() =>
+                                        navigate(
+                                            `/grammar-lesson/${lesson.num}`
+                                        )
+                                    }
+                                >
+                                    <div className={styles.titleNum}>
+                                        {lesson.num}
+                                    </div>
+                                    <span>{lesson.title}</span>
+
+                                    <BackIcon
+                                        width={40}
+                                        height="100%"
+                                        className={styles.gotoIcon}
+                                    />
                                 </div>
-                                <span>{lesson.title}</span>
-
-                                <BackIcon
-                                    width={40}
-                                    height="100%"
-                                    className={styles.gotoIcon}
-                                />
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ) : null}
+                )}
+            />
+            {/* {data ? (
+            ) : null} */}
         </Card>
     );
 };

@@ -5,7 +5,7 @@ export const useNavigationLayoutStyles = createUseStyles({
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        minHeight: "100vh !important",
         justifyContent: "space-between",
         "@media(min-width: 420px)": {
             maxWidth: 720,
@@ -17,7 +17,7 @@ export const useNavigationLayoutStyles = createUseStyles({
         overflow: "auto",
     },
     touchbar: {
-        position: "sticky",
+        position: "fixed",
         left: 0,
         bottom: 0,
         display: "flex",
@@ -31,8 +31,9 @@ export const useNavigationLayoutStyles = createUseStyles({
         paddingLeft: 4,
         paddingRight: 4,
         marginTop: 20,
-        "@media(min-height: 420px)": {
-            maxWidth: 720,
+        "@media(min-width: 420px)": {
+            width: "100%",
+            height: 100,
         },
     },
     touchbarItem: {

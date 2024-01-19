@@ -7,10 +7,9 @@ export const useGrammarProgressStyles = createUseStyles({
     },
     header: {
         textAlign: "center",
+        marginBottom: 8,
     },
-    lessons: {
-        marginTop: 8,
-    },
+    lessons: {},
     lessonsList: {
         fontSize: 14,
     },

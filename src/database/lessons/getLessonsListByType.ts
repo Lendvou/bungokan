@@ -1,3 +1,4 @@
+import { sleep } from "@/utils/sleep";
 import { ILessonItem } from ".";
 import { db } from "..";
 import { GrammarCourses } from "../grammarCourses";
@@ -29,6 +30,8 @@ export const getLessonsListByType = async (
                 userLesson: userLessons.find((item) => item.num === lesson.num),
             }))
         );
+
+    // await sleep(1000);
 
     return result;
 };

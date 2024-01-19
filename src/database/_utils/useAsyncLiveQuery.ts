@@ -37,7 +37,7 @@ const useAsyncLiveQuery = <T>(
     const [data, status] = useLiveQuery(
         () => {
             if (options?.skip) {
-                return [undefined, Status.RESOLVED];
+                return [undefined, Status.PENDING];
             }
 
             return querier(db).then((data: T) => {

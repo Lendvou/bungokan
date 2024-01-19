@@ -37,6 +37,7 @@ export const useGrammarContentsStyles = createUseStyles({
         borderBottom: "1px solid #626262",
         fontSize: 14,
         transition: "0.2s",
+        cursor: "pointer",
         "&:hover": {
             backgroundColor: "#313131",
         },

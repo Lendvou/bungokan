@@ -1,18 +1,18 @@
 import { GrammarCourses } from "../grammarCourses";
 
-type ContentImage = {
+export type ContentImage = {
     type: "image";
     content: string;
 };
-type ContentSubtitle = {
+export type ContentSubtitle = {
     type: "subtitle";
     content: string;
 };
-type ContentText = {
+export type ContentText = {
     type: "text";
     content: string;
 };
-type ContentNewLine = {
+export type ContentNewLine = {
     type: "newline";
 };
 

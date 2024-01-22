@@ -61,6 +61,7 @@ export const useGrammarContentsStyles = createUseStyles({
         fontWeight: 500,
     },
     infoBlock: {
+        paddingLeft: 20,
         marginLeft: "auto",
         marginRight: 6,
         display: "flex",
@@ -72,14 +73,7 @@ export const useGrammarContentsStyles = createUseStyles({
         // marginRight: 8,
         fontSize: 12,
     },
-    subtitles: {
-        // marginTop: 10,
-        padding: "8px 0",
-    },
-    subtitle: {
-        fontSize: 14,
-        // marginBottom: 12,
-        paddingTop: 4,
-        paddingBottom: 4,
+    doneIcon: {
+        padding: 4,
     },
 });

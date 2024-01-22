@@ -32,6 +32,16 @@ export const GrammarContents = () => {
 
     const styles = useGrammarContentsStyles();
 
+    const renderProgress = (progress?: number) => {
+        if (!progress) {
+            return "-";
+        }
+        if (progress === 100) {
+            return "100%";
+        }
+        return `${progress}%`;
+    };
+
     return (
         <>
             <ContentLoader
@@ -66,8 +76,9 @@ export const GrammarContents = () => {
 
                                         <div className={styles.infoBlock}>
                                             <DoneIcon
-                                                width={23}
-                                                height={23}
+                                                width={30}
+                                                height={30}
+                                                className={styles.doneIcon}
                                                 color={
                                                     item.userLesson
                                                         ?.learningProgress ===
@@ -79,22 +90,16 @@ export const GrammarContents = () => {
                                                     handleClickDone(e, item.num)
                                                 }
                                             />
-                                            {![0, 100].includes(
-                                                item.userLesson
-                                                    ?.learningProgress || 0
-                                            ) && (
-                                                <span
-                                                    className={
-                                                        styles.lessonProgress
-                                                    }
-                                                >
-                                                    {
-                                                        item.userLesson
-                                                            ?.learningProgress
-                                                    }
-                                                    %
-                                                </span>
-                                            )}
+                                            <span
+                                                className={
+                                                    styles.lessonProgress
+                                                }
+                                            >
+                                                {renderProgress(
+                                                    item.userLesson
+                                                        ?.learningProgress
+                                                )}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

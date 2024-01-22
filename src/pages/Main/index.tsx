@@ -3,6 +3,7 @@ import { OverallProgress } from "./_components/OverallProgress";
 import useAsyncLiveQuery from "../../database/_utils/useAsyncLiveQuery";
 import { getUserDailyProgress } from "../../database/userProgress/getUserDailyProgress";
 import { GrammarProgress } from "./_components/GrammarProgress";
+import { Touchbar } from "@/components/Touchbar";
 
 export const MainPage = () => {
     const { data: overallProgress } = useAsyncLiveQuery(getUserDailyProgress);
@@ -10,9 +11,12 @@ export const MainPage = () => {
     const styles = useMainPageStyles();
     return (
         <div className={styles.container}>
-            <OverallProgress progressData={overallProgress} />
+            <div className={styles.body}>
+                <OverallProgress progressData={overallProgress} />
+                <GrammarProgress />
+            </div>
 
-            <GrammarProgress />
+            <Touchbar />
         </div>
     );
 };

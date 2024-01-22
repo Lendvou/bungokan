@@ -9,6 +9,7 @@ import { db } from "../../database";
 import { getLessonByNum } from "../../database/lessons/getLessonByNum";
 import { getGrammarMetaInfo } from "../../database/grammarCourses/getGrammarMetaInfo";
 import { getUserLessonByNum } from "../../database/userLessons/getUserLessonByNum";
+import { useRestoreScrollPosition } from "@/utils/useRestoreScrollPosition";
 
 export const GrammarLessonPage = () => {
     const params = useParams();
@@ -16,18 +17,17 @@ export const GrammarLessonPage = () => {
     const { data: lesson, isLoading: isLessonsLoading } = useAsyncLiveQuery(
         () => getLessonByNum(params!.num),
         [params],
-        { skip: !params }
+        { skip: !params?.num }
     );
     const { data: grammarMeta, isLoading: isMetaLoading } = useAsyncLiveQuery(
         () => getGrammarMetaInfo(lesson!.courseName),
         [lesson],
         { skip: !lesson }
     );
-    const { data: userLesson } = useAsyncLiveQuery(
-        () => getUserLessonByNum(lesson!.num),
-        [lesson],
-        { skip: !lesson }
-    );
+    const { data: userLesson, isLoading: isUserLessonLoading } =
+        useAsyncLiveQuery(() => getUserLessonByNum(lesson!.num), [lesson], {
+            skip: !lesson,
+        });
 
     const handleClickDone = async () => {
         if (!lesson || !userLesson?.id) {
@@ -37,6 +37,10 @@ export const GrammarLessonPage = () => {
             learningProgress: userLesson.learningProgress === 100 ? 0 : 100,
         });
     };
+
+    useRestoreScrollPosition(
+        isLessonsLoading || isMetaLoading || isUserLessonLoading
+    );
 
     useTrackLessonsProgress(lesson);
 

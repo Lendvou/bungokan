@@ -6,11 +6,8 @@ import { db } from "./database";
 function App() {
     useEffect(() => {
         db.open();
-        // if ("scrollRestoration" in history) {
-        //     console.log("restoration", history);
-        //     history.scrollRestoration = "manual";
-        // }
     }, []);
+
     return <RouterProvider router={router} />;
 }
 

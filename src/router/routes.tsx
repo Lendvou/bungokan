@@ -1,7 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { RouteNames } from "./constants";
-import { NavigationLayout } from "../layouts/NavigationLayout";
-import { DefaultLayout } from "../layouts/DefaultLayout";
+import { RouteNames } from "./routeNames";
 import { GrammarPage } from "../pages/Grammar";
 import { MainPage } from "../pages/Main";
 import { NotFound } from "../pages/NotFound";
@@ -9,58 +7,45 @@ import { VocabPage } from "../pages/Vocab";
 import { KanjiPage } from "../pages/Kanji";
 import { SettingsPage } from "../pages/Settings";
 import { GrammarLessonPage } from "../pages/GrammarLesson";
+import { RouteWrapper } from "./RouteWrapper";
 
-export const routes: RouteObject[] = [
+interface IRouteListItem {
+    path: RouteNames;
+    component: React.FC;
+}
+
+const routesList: IRouteListItem[] = [
     {
         path: RouteNames.MAIN,
-        element: (
-            <NavigationLayout>
-                <MainPage />
-            </NavigationLayout>
-        ),
+        component: MainPage,
     },
     {
         path: RouteNames.GRAMMAR,
-        element: (
-            <NavigationLayout>
-                <GrammarPage />
-            </NavigationLayout>
-        ),
+        component: GrammarPage,
     },
     {
         path: RouteNames.GRAMMAR_LESSON,
-        element: (
-            <DefaultLayout>
-                <GrammarLessonPage />
-            </DefaultLayout>
-        ),
+        component: GrammarLessonPage,
     },
     {
         path: RouteNames.VOCAB,
-        element: (
-            <NavigationLayout>
-                <VocabPage />
-            </NavigationLayout>
-        ),
+        component: VocabPage,
     },
     {
         path: RouteNames.KANJI,
-        element: (
-            <NavigationLayout>
-                <KanjiPage />
-            </NavigationLayout>
-        ),
+        component: KanjiPage,
     },
     {
         path: RouteNames.SETTINGS,
-        element: (
-            <NavigationLayout>
-                <SettingsPage />
-            </NavigationLayout>
-        ),
+        component: SettingsPage,
     },
     {
-        path: "*",
-        element: <NotFound />,
+        path: RouteNames.NOT_FOUND,
+        component: NotFound,
     },
 ];
+
+export const routes: RouteObject[] = routesList.map((route) => ({
+    path: route.path,
+    element: <RouteWrapper Component={route.component} />,
+}));

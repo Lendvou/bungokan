@@ -1,28 +1,14 @@
 import { createUseStyles } from "react-jss";
 
-export const useNavigationLayoutStyles = createUseStyles({
+export const useTouchbarStyles = createUseStyles({
     container: {
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh !important",
-        justifyContent: "space-between",
-        "@media(min-width: 420px)": {
-            maxWidth: 720,
-            margin: "auto",
-        },
-    },
-    body: {
-        height: "100vh",
-        overflow: "auto",
-    },
-    touchbar: {
-        position: "fixed",
+        position: "sticky",
         left: 0,
-        bottom: 0,
+        bottom: "0px",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "stretch",
+        justifySelf: "flex-end",
         backgroundColor: "#181818",
         paddingTop: 8,
         paddingBottom: 8,
@@ -31,6 +17,7 @@ export const useNavigationLayoutStyles = createUseStyles({
         paddingLeft: 4,
         paddingRight: 4,
         marginTop: 20,
+        zIndex: 10,
         "@media(min-width: 420px)": {
             width: "100%",
             height: 100,

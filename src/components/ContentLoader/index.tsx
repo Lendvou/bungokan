@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Loader } from "../Loader";
 import { useContentLoaderStyles } from "./styles";
 import { CSSTransition } from "react-transition-group";
@@ -9,6 +9,7 @@ interface IContentLoaderProps {
     content: () => React.ReactNode;
     fullPage?: boolean;
     loaderSizeScale?: number;
+    loaderAppearTimer?: number;
 }
 
 export const ContentLoader: React.FC<IContentLoaderProps> = ({
@@ -16,7 +17,14 @@ export const ContentLoader: React.FC<IContentLoaderProps> = ({
     content,
     fullPage = false,
     loaderSizeScale = 1,
+    loaderAppearTimer = 200,
 }) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => setIsVisible(true), loaderAppearTimer);
+    }, [loaderAppearTimer]);
+
     const styles = useContentLoaderStyles();
     return (
         <>
@@ -25,9 +33,12 @@ export const ContentLoader: React.FC<IContentLoaderProps> = ({
                     className={clsx(styles.container, {
                         [styles.container__fullpage]: fullPage,
                     })}
-                    style={{ transform: `scale(${loaderSizeScale})` }}
                 >
-                    <Loader />
+                    {isVisible ? (
+                        <Loader
+                            style={{ transform: `scale(${loaderSizeScale})` }}
+                        />
+                    ) : null}
                 </div>
             )}
             <CSSTransition

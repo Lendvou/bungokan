@@ -3,7 +3,7 @@ import JiSVG from "@/assets/icons/ji.svg?react";
 import IuSVG from "@/assets/icons/iu.svg?react";
 import BunSVG from "@/assets/icons/bun.svg?react";
 import SettingsSVG from "@/assets/icons/settings.svg?react";
-import { RouteNames } from "../../router/constants";
+import { RouteNames } from "@/router/routeNames";
 
 type TouchBarItem = {
     name: string;
@@ -15,7 +15,7 @@ type TouchBarItem = {
     link: string;
 };
 
-export const touchbarItems: TouchBarItem[] = [
+export const TOUCHBAR_ITEMS: TouchBarItem[] = [
     {
         name: "Main",
         Icon: BookSVG,

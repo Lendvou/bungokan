@@ -7,16 +7,16 @@ export const useContentLoaderStyles = createUseStyles({
         alignItems: "center",
     },
     container__fullpage: {
-        position: "fixed",
+        // position: "fixed",
         zIndex: 10,
         width: "100vw",
         height: "100vh",
     },
     contentWrapper: {
-        opacity: 0,
+        opacity: 0.5,
     },
     fadeEnter: {
-        opacity: 0,
+        opacity: 0.5,
     },
     fadeEnterActive: {
         opacity: 1,

@@ -15,7 +15,7 @@ export const GrammarProgress: React.FC<IGrammarProgressProps> = ({ asdf }) => {
     const navigate = useNavigate();
 
     const { data, isLoading } = useAsyncLiveQuery(getLessonsToStudy);
-    console.log("data", data);
+    // console.log("data", data);
 
     const styles = useGrammarProgressStyles();
 
@@ -61,8 +61,6 @@ export const GrammarProgress: React.FC<IGrammarProgressProps> = ({ asdf }) => {
                     </div>
                 )}
             />
-            {/* {data ? (
-            ) : null} */}
         </Card>
     );
 };

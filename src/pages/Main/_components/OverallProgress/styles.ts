@@ -26,7 +26,7 @@ export const useOverallProgressStyles = createUseStyles({
         // width: 20,
         height: 30,
         margin: 6,
-        borderRadius: 4,
+        borderRadius: 6,
         backgroundColor: "#292929",
         display: "flex",
         flexDirection: "column",

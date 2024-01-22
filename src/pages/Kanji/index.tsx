@@ -1,7 +1,13 @@
+import { Touchbar } from "@/components/Touchbar";
+import { useKanjiPageStyles } from "./styles";
+
 export const KanjiPage = () => {
+    const styles = useKanjiPageStyles();
     return (
-        <div style={{ textAlign: "center", marginTop: 30 }}>
-            Work in progress
+        <div className={styles.container}>
+            <div className={styles.body}>Work in progress</div>
+
+            <Touchbar />
         </div>
     );
 };

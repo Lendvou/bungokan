@@ -40,6 +40,7 @@ export const useGrammarProgressStyles = createUseStyles({
         transform: "rotate(180deg)",
         marginLeft: "auto",
         padding: 10,
+        minWidth: 40,
         // paddingLeft: 10,
     },
 });

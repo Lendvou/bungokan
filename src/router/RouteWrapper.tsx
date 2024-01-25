@@ -15,34 +15,34 @@ const TRANSITION_MS = 150;
 const useRouterStyles = createUseStyles({
     pushEnter: {
         transform: "translateX(40px)",
-        // opacity: 0.7,
+        minHeight: "100vh",
     },
     pushEnterActive: {
         transform: "translateX(0px)",
         transition: `${TRANSITION_MS}ms`,
-        opacity: 1,
+        minHeight: "100vh",
     },
     pushExit: {
-        opacity: 1,
+        minHeight: "100vh",
     },
     pushExitActive: {
-        // opacity: 0.7,
+        minHeight: "100vh",
     },
 
     popEnter: {
         transform: "translateX(-40px)",
-        // opacity: 0.7,
+        minHeight: "100vh",
     },
     popEnterActive: {
         transform: "translateX(0px)",
         transition: `${TRANSITION_MS}ms`,
-        opacity: 1,
+        minHeight: "100vh",
     },
     popExit: {
-        opacity: 1,
+        minHeight: "100vh",
     },
     popExitActive: {
-        // opacity: 0.7,
+        minHeight: "100vh",
     },
 });
 

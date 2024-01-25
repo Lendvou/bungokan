@@ -14,9 +14,7 @@ export const getLessonsToStudy =
             .where({
                 courseName: GrammarCourses.CURE_DOLLY,
             })
-            .sortBy("num");
-
-        // await sleep(1000);
+            .toArray();
 
         const pendingLessons = userLessons.filter(
             (item) =>
@@ -26,7 +24,9 @@ export const getLessonsToStudy =
             const pendingGrammarLessons = await db.lessons
                 .where("num")
                 .anyOf(pendingLessons.map((item) => item.num))
-                .toArray();
+                .toArray((res) =>
+                    [...res].sort((a, b) => parseInt(a.num) - parseInt(b.num))
+                );
             return {
                 type: "pending",
                 content: pendingGrammarLessons.filter(

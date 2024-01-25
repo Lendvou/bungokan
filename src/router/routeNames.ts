@@ -5,5 +5,6 @@ export enum RouteNames {
     VOCAB = "/vocab",
     KANJI = "/kanji",
     SETTINGS = "/settings",
+    DICTIONARY = "/dictionary",
     NOT_FOUND = "*",
 }

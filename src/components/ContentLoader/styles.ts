@@ -20,7 +20,7 @@ export const useContentLoaderStyles = createUseStyles({
     },
     fadeEnterActive: {
         opacity: 1,
-        transition: "0.2s",
+        transition: "0.15s",
     },
     fadeEnterDone: {
         opacity: 1,

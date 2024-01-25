@@ -43,7 +43,7 @@ export const ContentLoader: React.FC<IContentLoaderProps> = ({
             )}
             <CSSTransition
                 in={!isLoading}
-                timeout={200}
+                timeout={150}
                 classNames={{
                     enter: styles.fadeEnter,
                     enterActive: styles.fadeEnterActive,

@@ -1,22 +1,40 @@
-import { useState } from "react";
 import { useGrammarOverviewStyles } from "./styles";
 import { CURE_DOLLY_DESCRIPTION } from "./constants";
 import { Button } from "../../../../components/Button";
-import { loadGrammarContent } from "../../_utils/loadGrammarContent";
+// import { useLoadGrammarContentStore } from "@/store/loadGrammar";
+import { GrammarLoadStatus } from "@/store/loadGrammar/types";
+import { useNavigate } from "react-router-dom";
+import { RouteNames } from "@/router/routeNames";
+import { useTypedStore } from "@/store";
 
 export const GrammarOverview = () => {
-    const [progress, setProgress] = useState<number>();
+    const navigate = useNavigate();
 
-    const startLoading = () => {
-        setProgress(0);
-        setInterval(() => {
-            setProgress((v) => ((v || 0) + 8 >= 100 ? 100 : (v || 0) + 8));
-        }, 1000);
+    const { status, downloadProgress, installProgress, loadGrammarContent } =
+        useTypedStore((state) => state.loadGrammar);
 
-        loadGrammarContent();
+    const handleLoadContentClick = () => {
+        if (status === GrammarLoadStatus.done) {
+            navigate(RouteNames.GRAMMAR);
+        } else {
+            loadGrammarContent();
+        }
     };
 
     const styles = useGrammarOverviewStyles();
+
+    const renderButtonText = () => {
+        if (status === GrammarLoadStatus.notStarted) {
+            return "Download (14.20Mb)";
+        }
+        if (status === GrammarLoadStatus.downloading) {
+            return `Downloading... ${downloadProgress}`;
+        }
+        if (status === GrammarLoadStatus.installing) {
+            return `Installing... ${installProgress}`;
+        }
+        return "Go to contents";
+    };
 
     return (
         <div className={styles.container}>
@@ -26,11 +44,10 @@ export const GrammarOverview = () => {
 
             <div className={styles.body}>
                 <Button
-                    isLoading={progress !== undefined}
-                    progress={progress}
-                    onClick={startLoading}
+                    disabled={status !== GrammarLoadStatus.notStarted}
+                    onClick={handleLoadContentClick}
                 >
-                    Download {"(14.20Mb)"}
+                    {renderButtonText()}
                 </Button>
 
                 <div className={styles.description}>

@@ -43,8 +43,6 @@ export const useGrammarContentsStyles = createUseStyles({
         },
     },
     title: {
-        paddingTop: 4,
-        paddingBottom: 4,
         fontWeight: 500,
         display: "flex",
         alignItems: "center",

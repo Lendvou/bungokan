@@ -3,6 +3,7 @@ Stack:
 - React
 - Typescript
 - Db: Dexie
+- Store: zustand
 - JSS
 - Vite
 

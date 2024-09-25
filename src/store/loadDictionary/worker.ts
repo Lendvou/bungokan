@@ -16,7 +16,7 @@ const pingProgressUpdate = (type: DictionaryLoadStatus, progress?: number) =>
 
 self.onmessage = async () => {
     const entries = await loadAndUnzip(
-        "@/assets/archives/superset-master.zip",
+        new URL("@/assets/archives/cure-dolly.zip", import.meta.url),
         (loaded: number, total: number = DICTIONARY_CONTENT_SIZE) => {
             const progress = total ? Math.floor((loaded / total) * 100) : 0;
             pingProgressUpdate(DictionaryLoadStatus.downloading, progress);

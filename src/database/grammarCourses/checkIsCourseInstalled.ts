@@ -1,5 +1,5 @@
 import { GrammarCourses } from ".";
 import { db } from "..";
 
-export const checkIsCourseAvailable = (courseName: GrammarCourses) =>
+export const checkIsCourseInstalled = (courseName: GrammarCourses) =>
     db.grammarCourses.get({ courseName }).then((res) => Boolean(res));

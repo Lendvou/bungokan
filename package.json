@@ -14,7 +14,7 @@
         "@zip.js/zip.js": "^2.7.32",
         "axios": "^1.6.5",
         "clsx": "^2.0.0",
-        "dexie": "^3.2.4",
+        "dexie": "^4.0.4",
         "dexie-react-hooks": "^1.1.7",
         "lodash.debounce": "^4.0.8",
         "moment": "^2.30.1",

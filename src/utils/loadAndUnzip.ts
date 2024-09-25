@@ -2,10 +2,10 @@ import { BlobReader, Entry, ZipReader } from "@zip.js/zip.js";
 import axios from "axios";
 
 export const loadAndUnzip = async (
-    path: string,
+    urlPath: URL,
     onDownloadProgress?: (loaded: number, total?: number) => void
 ): Promise<Entry[]> => {
-    const dictPath = new URL(path, import.meta.url).href;
+    const dictPath = urlPath.href;
     const { data: archiveBlob } = await axios(dictPath, {
         responseType: "blob",
         onDownloadProgress(progressEvent) {

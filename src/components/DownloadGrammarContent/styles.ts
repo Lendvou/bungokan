@@ -1,22 +1,22 @@
 import { createUseStyles } from "react-jss";
 
-export const useGrammarOverviewStyles = createUseStyles({
+export const useDownloadGrammarContentStyles = createUseStyles({
     container: {
         position: "relative",
     },
     header: {
-        position: "sticky",
-        top: 0,
-        backgroundColor: "#292929",
+        // position: "sticky",
+        // top: 0,
+        // backgroundColor: "#292929",
         zIndex: 2,
         paddingTop: 18,
         paddingBottom: 18,
-        marginBottom: 20,
-        boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.45)",
+        // marginBottom: 20,
+        // boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.45)",
         // borderBottom: "1px solid white",
     },
     title: {
-        fontSize: 24,
+        fontSize: 18,
         textAlign: "center",
         margin: 0,
         // marginTop: 25,

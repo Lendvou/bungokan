@@ -14,9 +14,7 @@ export const DictionaryPage = () => {
     const { status, downloadProgress, installProgress, loadDictionaryContent } =
         useTypedStore((state) => state.loadDictionary);
 
-    const store = useTypedStore();
-
-    console.log("dict", status, store);
+    console.log("dict", status);
 
     const handleSearchValueChange = (
         e: React.ChangeEvent<HTMLInputElement>

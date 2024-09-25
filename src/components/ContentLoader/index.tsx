@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useDeferredValue, useEffect, useState } from "react";
 import { Loader } from "../Loader";
 import { useContentLoaderStyles } from "./styles";
 import { CSSTransition } from "react-transition-group";

@@ -23,7 +23,7 @@ const pingProgressUpdate = (type: GrammarLoadStatus, progress?: number) =>
 
 self.onmessage = async () => {
     const entries = await loadAndUnzip(
-        "@/assets/archives/superset-master.zip",
+        new URL("@/assets/archives/cure-dolly.zip", import.meta.url),
         (loaded: number, total: number = CURE_DOLLY_ARCHIVE_SIZE) => {
             const progress = total ? Math.floor((loaded / total) * 100) : 0;
             pingProgressUpdate(GrammarLoadStatus.downloading, progress);
